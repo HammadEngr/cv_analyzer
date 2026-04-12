@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { test, get_anthropic_response } from "../services/anthropic_service.js";
-import uploadFile from "../services/file_storage.js";
+import { get_anthropic_response } from "../controllers/analyse.controller.js";
+import uploadFile from "../services/storage.service.js";
 
 const router = Router();
 

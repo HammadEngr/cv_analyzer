@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import router from "./routes/analyse.route.js";
+import globalErrorHandler from "./controllers/global_error.controller.js";
 
 dotenv.config();
 
@@ -16,3 +17,6 @@ app.listen(port, () => {
 });
 
 app.use("/api/", router);
+
+// Global error handling middleware
+app.use(globalErrorHandler);

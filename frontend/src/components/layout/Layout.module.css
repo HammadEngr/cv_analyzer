@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  width: 100%;
+
+  .title_box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      font-variant: small-caps;
+      letter-spacing: 3px;
+    }
+    p {
+      color: var(--text_secondary);
+    }
+  }
+  .tagline {
+    font-size: 1.4rem;
+    color: var(--text_tertiary);
+    margin-top: 5px;
+  }
+}

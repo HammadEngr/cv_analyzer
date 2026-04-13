@@ -3,6 +3,7 @@ import AppError from "../utils/app_error.js";
 import generate_prompt from "./prompt.service.js";
 import parse_response from "./response.parser.js";
 
+// without steams
 export async function analyse_cv(cv_text) {
   try {
     const prompt = generate_prompt(cv_text);
@@ -60,4 +61,40 @@ export async function analyse_cv(cv_text) {
     // General errors
     throw new AppError("Internal Server Error", 500);
   }
+}
+
+// With streams
+export async function analyse_cv_stream(cvText, res) {
+  // tell frontend file received, analysis starting
+  res.write(`data: ${JSON.stringify({ status: "analysing" })}\n\n`);
+
+  const stream = anthropic_client.messages.stream({
+    model: "claude-sonnet-4-6",
+    max_tokens: 2048,
+    messages: [{ role: "user", content: generate_prompt(cvText) }],
+  });
+
+  let fullText = "";
+
+  stream.on("text", (text) => {
+    fullText += text;
+    res.write(`data: ${JSON.stringify({ chunk: text })}\n\n`);
+  });
+
+  stream.on("finalMessage", (message) => {
+    if (message.stop_reason === "end_turn") {
+      const parsed = parse_response(fullText);
+      res.write(
+        `data: ${JSON.stringify({ status: "done", response: parsed })}\n\n`,
+      );
+    }
+    res.end();
+  });
+
+  stream.on("error", (error) => {
+    res.write(
+      `data: ${JSON.stringify({ status: "error", error: "Analysis failed" })}\n\n`,
+    );
+    res.end();
+  });
 }

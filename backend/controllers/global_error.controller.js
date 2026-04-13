@@ -1,6 +1,10 @@
 function globalErrorHandler(err, req, res, next) {
   console.error("Error:", err);
 
+  if (res.headersSent) {
+    return res.end(); // stream already open, just close it
+  }
+
   if (process.env.NODE_ENV === "development") {
     return res.status(err.statusCode || 500).json({
       error: err.message,

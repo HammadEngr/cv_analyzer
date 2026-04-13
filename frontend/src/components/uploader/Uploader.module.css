@@ -48,5 +48,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: chocolate;
+  border-left: 1px dotted var(--border);
+  /* background-color: chocolate; */
+}
+.status_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.status {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text_secondary);
 }

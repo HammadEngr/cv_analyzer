@@ -1,0 +1,12 @@
+.panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 1rem;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.panel > *:nth-child(n + 3) {
+  grid-column: 1 / -1;
+}

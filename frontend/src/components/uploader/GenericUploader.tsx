@@ -71,45 +71,48 @@ function GenericUploader(): JSX.Element {
 
   return (
     <div className={styles.uploader}>
-      <div className={styles.upload_section}>
-        <h2 className={styles.uploader_heading}>
-          Zero confusion with quantified results and suggestions
-        </h2>
-        <div className={styles.dropbox}>
-          <p>Upload your resume in pdf format only here!</p>
-          <input
-            type="file"
-            accept=".pdf"
-            style={{ display: "none" }}
-            id="cv-upload"
-            onChange={handleFileChange}
-            ref={inputRef}
-          />
-          <button className={styles.btn} onClick={handleUpload}>
-            Upload Your Resume
-          </button>
+      <p className={styles.title}>Generic CV Analyzer</p>
+      <div className={styles.upload_wrapper}>
+        <div className={styles.upload_section}>
+          <h2 className={styles.uploader_heading}>
+            Zero confusion with quantified results and suggestions
+          </h2>
+          <div className={styles.dropbox}>
+            <p>Upload your resume in pdf format only here!</p>
+            <input
+              type="file"
+              accept=".pdf"
+              style={{ display: "none" }}
+              id="cv-upload"
+              onChange={handleFileChange}
+              ref={inputRef}
+            />
+            <button className={styles.btn} onClick={handleUpload}>
+              Upload Your Resume
+            </button>
+          </div>
         </div>
-      </div>
-      <div className={styles.results_section}>
-        {status === "uploading" && (
-          <div className={styles.status_box}>
-            <RotatingRing />
-            <p className={styles.status}>Uploading your CV...</p>
-          </div>
-        )}
-        {status === "analysing" && (
-          <div className={styles.status_box}>
-            <PulsingDots />
-            <p className={styles.status}>Analysing with AI...</p>
-          </div>
-        )}
-        {status === "done" && <ResultsPanel result={result} />}
-        {status === "error" && <p>Something went wrong, please try again</p>}
-        {status === "none" && (
-          <div className={styles.status_box}>
-            <p className={styles.status}>See your report here!</p>
-          </div>
-        )}
+        <div className={styles.results_section}>
+          {status === "uploading" && (
+            <div className={styles.status_box}>
+              <RotatingRing />
+              <p className={styles.status}>Uploading your CV...</p>
+            </div>
+          )}
+          {status === "analysing" && (
+            <div className={styles.status_box}>
+              <PulsingDots />
+              <p className={styles.status}>Analysing with AI...</p>
+            </div>
+          )}
+          {status === "done" && <ResultsPanel result={result} />}
+          {status === "error" && <p>Something went wrong, please try again</p>}
+          {status === "none" && (
+            <div className={styles.status_box}>
+              <p className={styles.status}>See your report here!</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ function Layout(props: LayoutProps): JSX.Element {
           <h1>Career Craft</h1>
           <p>Your AI based career advisor</p>
         </div>
-        <p className={styles.tagline}>Get instant AI feedback on your CV</p>
+        {/* <p className={styles.tagline}>Get instant AI feedback on your CV</p> */}
       </header>
       {children}
     </div>

@@ -1,5 +1,5 @@
 import { useRef, useState, type JSX } from "react";
-import styles from "./Uploader.module.css";
+import styles from "./GenericUploader.module.css";
 import ResultsPanel from "./Results/ResultsPannel";
 import RotatingRing from "../Spinners/RotatingRing";
 import PulsingDots from "../Spinners/PulsingDots";
@@ -53,7 +53,7 @@ const sendFileToBackend = async (
   }
 };
 
-function Uploader(): JSX.Element {
+function GenericUploader(): JSX.Element {
   const [status, setStatus] = useState("none");
   const [result, setResult] = useState<any>();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -115,7 +115,7 @@ function Uploader(): JSX.Element {
   );
 }
 
-export default Uploader;
+export default GenericUploader;
 
 // Without Streams
 // const sendFileToBackend = async (file: File): Promise<void> => {

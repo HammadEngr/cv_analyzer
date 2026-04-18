@@ -11,7 +11,8 @@
 html,
 body,
 #root {
-  background-color: var(--bg);
+  /* background-color: var(--bg); */
+  background-color: antiquewhite;
   font-size: 16px;
   height: 100%;
   width: 100%;
